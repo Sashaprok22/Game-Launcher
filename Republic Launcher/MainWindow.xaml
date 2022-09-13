@@ -1,0 +1,473 @@
+﻿<Window x:Class="Republic_Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Republic_Launcher"
+        mc:Ignorable="d"
+        Icon="assets/settings.png"
+        Title="Republic Launcher" Height="625" Width="997" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="TaskBar" ProgressValue="0" ProgressState="None"/>
+    </Window.TaskbarItemInfo>
+
+    <Window.Resources>
+        <Style x:Key="DefaultButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#2F3142"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.7" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <LinearGradientBrush x:Key="DefaultGradient" EndPoint="1,0.3" StartPoint="0,0" >
+            <GradientStop Color="#EB467FF9" Offset="0"/>
+            <GradientStop Color="#EB305AB6" Offset="1"/>
+        </LinearGradientBrush>
+
+        <ResourceDictionary x:Key="Rounded10">
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Rounded14">
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="14" />
+            </Style>
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110" />
+            <RowDefinition />
+            <RowDefinition Height="91" />
+        </Grid.RowDefinitions>
+
+        <Rectangle x:Name="MainBackground" Fill="#1E202A" Height="625" Width="997" RadiusY="17" RadiusX="17" Opacity="0.95" Grid.RowSpan="3" />
+
+        <!--Main block-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="335" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Width="615" Height="390" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="302" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="302" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition />
+                    <RowDefinition Height="70" />
+                    <RowDefinition />
+                    <RowDefinition Height="70" />
+                    <RowDefinition />
+                    <RowDefinition Height="70" />
+                    <RowDefinition />
+                    <RowDefinition Height="70" />
+                </Grid.RowDefinitions>
+
+                <Button Name="Server1" Click="onServerClick" Grid.Row="0" Grid.Column="0" Background="#FF252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName1" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar1" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers1" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server2" Click="onServerClick" Grid.Row="2" Grid.Column="0" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName2" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar2" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers2" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server3" Click="onServerClick" Grid.Row="4" Grid.Column="0" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName3" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar3" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers3" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server4" Click="onServerClick" Grid.Row="6" Grid.Column="0" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName4" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar4" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers4" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server5" Click="onServerClick" Grid.Row="8" Grid.Column="0" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName5" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar5" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers5" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server6" Click="onServerClick" Grid.Row="0" Grid.Column="2" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName6" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar6" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers6" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server7" Click="onServerClick" Grid.Row="2" Grid.Column="2" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName7" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar7" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers7" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server8" Click="onServerClick" Grid.Row="4" Grid.Column="2" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName8" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar8" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers8" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server9" Click="onServerClick" Grid.Row="6" Grid.Column="2" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName9" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar9" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers9" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+                <Button Name="Server10" Click="onServerClick" Grid.Row="8" Grid.Column="2" Background="#252836" BorderBrush="#252836" Style="{StaticResource DefaultButton}" BorderThickness="2" Resources="{StaticResource Rounded10}" >
+                    <Button.Effect>
+                        <BlurEffect Radius="5" />
+                    </Button.Effect>
+
+                    <Grid Width="302" Height="70">
+                        <Image Source="assets/server.png" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,0" />
+                        <TextBlock x:Name="ServerName10" Margin="70,20,0,35" Foreground="White" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >GTA Republic</TextBlock>
+                        <Rectangle Width="150" Height="6" Fill="#2F3142" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" />
+                        <Rectangle x:Name="ServerProgressBar10" Width="50" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="68,0,0,18" RadiusX="3" RadiusY="3" Fill="{StaticResource DefaultGradient}"/>
+                        <TextBlock x:Name="ServerPlayers10" Margin="210,31,14,24" Foreground="#87899C" TextAlignment="Right" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >000/000</TextBlock>
+                    </Grid>
+
+                </Button>
+
+            </Grid>
+
+            <Image x:Name="NewsImg" Stretch="UniformToFill" Grid.Column="1" Source="assets/news_example.png" Width="302" Height="390" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,21">
+                <Image.Clip>
+                    <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,302,390"/>
+                </Image.Clip>
+            </Image>
+
+            <Rectangle RadiusX="10" RadiusY="10" Grid.Column="1" Width="302" Height="390" Fill="#252836" Opacity="0.77" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,21" />
+
+            <TextBlock Grid.Column="1" Foreground="White" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" FontSize="14" VerticalAlignment="Bottom" Margin="14,0,14,152" >Публикация новости</TextBlock>
+
+            <Image Grid.Column="1" Source="assets/date.png" Width="12" Height="13" HorizontalAlignment="Left" Margin="14,278,0,133" RenderTransformOrigin="0.625,-1.154" />
+
+            <TextBlock x:Name="NewsDate" Grid.Column="1" Foreground="White" Opacity="0.7" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium" FontSize="12" VerticalAlignment="Bottom" Margin="31,0,31,132" Text="Сегодня" />
+
+            <TextBlock x:Name="News" Grid.Column="1" Foreground="White" Opacity="0.7" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium" FontSize="12"
+                VerticalAlignment="Bottom" Margin="14,0,47,91" Text="В скором времени обязательно будут новости" Height="31" TextWrapping="Wrap" TextTrimming="WordEllipsis"  />
+
+            <Button x:Name="ReadNews" Click="onMainClick" Grid.Column="1" Width="274" Height="42" HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom" Content="Читать новость" FontSize="12" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium"
+                    Foreground="#FFFFFF" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource DefaultButton}"
+                    Background="{StaticResource DefaultGradient}" Resources="{StaticResource Rounded10}" Margin="14,42" />
+
+        </Grid>
+
+        <!--Load-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="585" />
+                <ColumnDefinition Width="148" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Grid.Column="0" Fill="#252836" Width="542" Height="62" RadiusX="10" RadiusY="10" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Top" />
+            <Rectangle x:Name="ProgressBar" Visibility="Hidden" Grid.Column="0" Width="200" Height="62" RadiusX="10" RadiusY="10" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Top" Fill="{StaticResource DefaultGradient}" />
+
+            <TextBlock x:Name="Percents" Visibility="Hidden" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextAlignment="Left" FontSize="18" FontFamily="/assets/Gilroy-Bold.ttf #Gilroy Bold" Margin="58,0,0,56" >00%</TextBlock>
+            <TextBlock x:Name="FileDownload" Visibility="Hidden" Opacity="0.6" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextAlignment="Left" FontSize="12" FontFamily="/assets/Gilroy-Regular.ttf #Gilroy Regular" Margin="58,0,0,42" Width="517" >Файлы - car/style.css</TextBlock>
+
+            <Image Grid.Column="1" Width="139" Height="62" Source="assets/speed.png" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <TextBlock Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Bottom" TextAlignment="Left" FontSize="12" FontFamily="/assets/Gilroy-Bold.ttf #Gilroy Bold" Margin="63,0,0,49" Width="78" >
+                <Run Name="SpeedConnection" Foreground="White" FontSize="18">0</Run>
+                <Run Foreground="#87899C" FontSize="12">мб/с</Run>
+            </TextBlock>
+
+            <Button x:Name="StartGame" Click="onMainClick" Grid.Column="2" Width="231" Height="62" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" Content="Выберите сервер" FontSize="14" FontFamily="assets/Inter-SemiBold.ttf #Inter Bold"
+                    Foreground="#FFFFFF" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource DefaultButton}"
+                    Background="{StaticResource DefaultGradient}" Resources="{StaticResource Rounded10}" IsEnabled="False" />
+
+
+        </Grid>
+
+        <!--Laucher Trouble-->
+        <Grid x:Name="LauncherTrouble" Height="625" Width="997" Grid.RowSpan="3" Visibility="Hidden" >
+            <Rectangle Fill="#1E202A" RadiusY="17" RadiusX="17" />
+            <Image Source="assets/logo.png" Width="250" Height="250" />
+            <TextBlock x:Name="TroubleText" Margin="0,413,0,176" TextAlignment="Center" HorizontalAlignment="Center" FontSize="22" FontFamily="/assets/Gilroy-Regular.ttf #Gilroy Regular" Foreground="White" Width="997" >Технические неполадки</TextBlock>
+        </Grid>
+
+
+        <!--Header-->
+        <Rectangle x:Name="HeaderBackground" Fill="#252836" RadiusY="17" RadiusX="17" Grid.Row="0" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="461" />
+                <ColumnDefinition Width="162" />
+                <ColumnDefinition Width="182" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="assets\logo.png" Grid.Column="0" Width="108" Height="108" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,6" />
+
+            <Grid x:Name="Links" Grid.Column="1" Height="15" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="44" />
+                    <ColumnDefinition Width="122" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="SiteBtn" Click="onMainClick" Grid.Column="0" BorderThickness="0" Width="122" Height="17" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource DefaultButton}">
+                    <Grid Grid.Column="0" Height="15" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image VerticalAlignment="Top" HorizontalAlignment="Left" Source="assets/site.png" Width="14" Height="14"  />
+                        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Margin="0,-2,1,2" Foreground="#FF87899C" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >Донат на сайте</Label>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="DiscordBtn" Click="onMainClick" Grid.Column="2" BorderThickness="0" Width="124" Height="18" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource DefaultButton}">
+                    <Grid Grid.Column="0" Height="17" Width="122" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image VerticalAlignment="Top" HorizontalAlignment="Left" Source="assets/discord.png" Width="12" Height="15" />
+                        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Margin="0,-2,1,2" Foreground="#FF87899C" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >Дискорд сервер</Label>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="VKBtn" Click="onMainClick" Grid.Column="4" BorderThickness="0" Width="137" Height="17" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource DefaultButton}">
+                    <Grid Grid.Column="0" Height="15" Width="135" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="assets/vk.png" Width="18" Height="10"  />
+                        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Margin="0,0,1,0" Foreground="#FF87899C" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" >Группа вконтакте</Label>
+                    </Grid>
+                </Button>
+
+            </Grid>
+
+            <Image Grid.Column="2" Source="assets\players.png" Width="23.5" Height="16.5" HorizontalAlignment="Right" Margin="16.5" />
+            <TextBlock x:Name="AllPlayersCount" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" Margin="49" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" Foreground="#FFFFFF" >?</TextBlock>
+
+            <Grid Grid.Column="3" Width="143" Height="44" HorizontalAlignment="Left">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="43" />
+                    <ColumnDefinition Width="7" />
+                    <ColumnDefinition Width="43" />
+                    <ColumnDefinition Width="7" />
+                    <ColumnDefinition Width="43"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="CloseBtn" Click="onMainClick" Grid.Column="4" Height="44" Width="43" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource DefaultButton}" Resources="{StaticResource Rounded14}" >
+                    <Image Source="assets/close.png" Width="13.12" Height="13.12" />
+                </Button>
+
+                <Button x:Name="MinimizedBtn" Click="onMainClick" Grid.Column="2" Height="44" Width="43" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource DefaultButton}" Resources="{StaticResource Rounded14}" >
+                    <Rectangle Fill="#87899C" Width="17" Height="2" RadiusX="1" RadiusY="1" Margin="0,15,0,0" />
+                </Button>
+
+                <Button x:Name="SettingsBtn" Click="onMainClick" Grid.Column="0" Height="44" Width="43" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource DefaultButton}" Resources="{StaticResource Rounded14}" >
+                    <Image Source="assets/settings.png" Width="19.37" Height="21.3" />
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0.3" StartPoint="0,0" >
+                            <GradientStop Color="#33467FF9" Offset="0"/>
+                            <GradientStop Color="#33305AB6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+        <Border x:Name="SettingsWindow" BorderThickness="0" BorderBrush="{x:Null}" CornerRadius="17" Grid.RowSpan="3" Background="#D1252836" Visibility="Hidden" >
+            <Grid Width="316" Height="354" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="68" />
+                    <RowDefinition Height="98" />
+                    <RowDefinition Height="89" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border Grid.RowSpan="6" Background="#252836" BorderBrush="#2F3142" BorderThickness="2" CornerRadius="13" />
+
+                <TextBlock Grid.Row="0" Margin="24, 26" Foreground="White" FontSize="14" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold">Настройки клиента</TextBlock>
+
+                <Button x:Name="CloseSettingsBtn" Click="onSettingsClick" Grid.Row="0" HorizontalAlignment="Right" Width="27" Height="27.63" Margin="265, 21,24,19.37"
+                        Background="#2F3142" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource DefaultButton}" Resources="{StaticResource Rounded14}">
+                    <Image Source="assets/close.png" Width="8.24" Height="8.24" />
+                </Button>
+
+                <TextBlock Grid.Row="1" Margin="25,0" Foreground="#87899C" FontSize="14" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium" >Путь к игре</TextBlock>
+                <Border Grid.Row="1" Width="270" Height="52" CornerRadius="13" BorderThickness="2" BorderBrush="#2F3142" Margin="23, 22" >
+                    <Grid>
+                        <TextBlock x:Name="GamePath" Text="C:\Games\GTA Republic" VerticalAlignment="Center" Padding="17" Margin="0,0,57,0" FontSize="14" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium" Foreground="White" />
+
+                        <Button x:Name="SelectGamePath" Click="onSettingsClick" Height="36" Width="36" BorderBrush="{x:Null}" BorderThickness="0"
+                                Style="{StaticResource DefaultButton}" HorizontalAlignment="Right" Margin="16,0" Background="{StaticResource DefaultGradient}" >
+                            <Image Source="assets/folder.png" Width="18" Height="18" />
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8" />
+                                </Style>
+                            </Button.Resources>
+
+                        </Button>
+                    </Grid>
+
+                </Border>
+
+                <TextBlock Grid.Row="2" Margin="25,0" Foreground="#87899C" FontSize="14" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium" >Ключ бета доступа</TextBlock>
+                <Image Source="assets/beta.png" Grid.Row="2" Width="270" Height="52" />
+                <TextBox x:Name="BetaEdit" Grid.Row="2" Width="270" Height="52" Padding="17"
+                    VerticalContentAlignment="Center" Background="Transparent" MaxLength="16"
+                    Foreground="White" FontSize="14" FontFamily="assets/Gilroy-Medium.ttf #Gilroy Medium"
+                    BorderThickness="0" CaretBrush="White" />
+
+                <Button x:Name="ActivateBetaKey" Grid.Row="2" Click="onSettingsClick" Height="36" Width="36" BorderBrush="{x:Null}" BorderThickness="0"
+                        Style="{StaticResource DefaultButton}" HorizontalAlignment="Right" Margin="39,0" Background="{StaticResource DefaultGradient}" >
+                    <Image Source="assets/beta_active.png" Width="14" Height="10" />
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8" />
+                        </Style>
+                    </Button.Resources>
+
+                </Button>
+
+                <TextBlock Grid.Row="3" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" Foreground="White" VerticalAlignment="Top" Margin="25, 0" >Обновлять тайм-цикл</TextBlock>
+                <Button x:Name="TimeCycleBtn" Click="onSettingsClick" Grid.Row="3" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="23,0" BorderThickness="1" Background="#467FF9" Style="{StaticResource DefaultButton}" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock Grid.Row="4" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" Foreground="White" VerticalAlignment="Top" Margin="25, 0" >Обновлять GUI стили</TextBlock>
+                <Button x:Name="GUIStylesBtn" Click="onSettingsClick" Grid.Row="4" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="23,0" BorderThickness="1" Background="#467FF9" Style="{StaticResource DefaultButton}" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock Grid.Row="5" FontSize="12" FontFamily="assets/Gilroy-Bold.ttf #Gilroy Bold" Foreground="White" VerticalAlignment="Top" Margin="25, 0" >Обновлять изображения</TextBlock>
+                <Button x:Name="ImagesBtn" Click="onSettingsClick" Grid.Row="5" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="23,0" BorderThickness="1" Background="#467FF9" Style="{StaticResource DefaultButton}" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</Window>
